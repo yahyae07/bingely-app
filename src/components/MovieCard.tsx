@@ -11,10 +11,6 @@ interface MovieProps {
 const MovieCard: React.FC<MovieProps> = ({ movie }) => {
   return (
     <div className={styles.movie}>
-      <h3>{movie.title}</h3>
-      <p>
-        Rating: <StarRating rating={movie.vote_average} showNumeric={true} />
-      </p>
       {movie.poster_path && (
         <div className={styles.imageContainer}>
           <img
@@ -24,6 +20,12 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
           />
         </div>
       )}
+      <div className={styles.movieInfo}>
+        <h3>{movie.title}</h3>
+        <p>
+          <StarRating rating={movie.vote_average} showNumeric={true} />
+        </p>
+      </div>
     </div>
   );
 };
