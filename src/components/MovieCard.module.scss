@@ -1,0 +1,29 @@
+.movie {
+    border: 1px solid red;
+    border-radius: 20px;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.imageContainer {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.posterImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
