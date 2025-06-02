@@ -4,7 +4,7 @@ import styles from "./Movies.module.scss";
 import MovieCard from "./MovieCard";
 
 async function Movies() {
-  const moviePagesToFetch = 2;
+  const moviePagesToFetch = 1;
   const uniqueMovies = new Map<number, MovieType>();
 
   for (let i = 1; i <= moviePagesToFetch; i++) {

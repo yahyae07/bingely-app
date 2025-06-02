@@ -12,9 +12,13 @@
 }
 
 .logo {
-    color: var(--red);
+    background: var(--darkred-to-white-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     font-size: 2.25rem;
     font-weight: bold;
+    display: inline-block;
 }
 
 .navLinks {
