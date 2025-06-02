@@ -27,6 +27,34 @@
     align-items: center;
     color: var(--white);
     gap: 40px;
+
+    a {
+        position: relative;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 5px 0;
+
+        &:hover, &.active {
+            transform: scale(1.1);
+            color: var(--dark-red);
+        }
+        
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--dark-red);
+            transition: width 0.3s ease;
+        }
+
+        &:hover::after, &.active::after {
+            width: 100%;
+        }
+        }
 }
 
 .searchWrapper {

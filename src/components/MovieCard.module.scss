@@ -101,6 +101,10 @@
     &:hover {
         color: var(--dark-red);
     }
+
+    &.active {
+        color: var(--dark-red);
+    }
 }
 
 .playIcon,
@@ -110,4 +114,8 @@
     border: var(--red) 0.1px solid;
     border-radius: 50%;
     padding: 5px;
+
+    .active & {
+            border-color: var(--dark-red);
+        }
 }
