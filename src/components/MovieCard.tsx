@@ -1,15 +1,34 @@
+"use client";
+
 import React from "react";
 import { Movie as MovieType } from "@/types/movies";
 import { IMAGE_BASE_URL } from "@/constants/constants";
 import styles from "./MovieCard.module.scss";
 import StarRating from "./StarRating";
-import { FaPlay, FaPlus } from "react-icons/fa";
+import { FaCheck, FaPlay, FaPlus } from "react-icons/fa";
+import useMoviesStore from "@/app/stores/useMoviesStore";
+import Link from "next/link";
 
 interface MovieProps {
   movie: MovieType;
 }
 
 const MovieCard: React.FC<MovieProps> = ({ movie }) => {
+  const { toggleFavorite, isFavorite } = useMoviesStore();
+  const isMovieFavorite = isFavorite(movie.id);
+  const [isHydrated, setIsHydrated] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const buttonText = isHydrated && isMovieFavorite ? "Added" : "My List";
+  const ButtonIcon = isHydrated && isMovieFavorite ? FaCheck : FaPlus;
+
+  const handleFavoriteToggle = (e: React.MouseEvent) => {
+    toggleFavorite(movie);
+  };
+
   return (
     <div className={styles.movie}>
       {movie.poster_path && (
@@ -28,11 +47,20 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
           <StarRating rating={movie.vote_average} showNumeric={true} />
         </p>
         <div className={styles.actionButtons}>
-          <button className={styles.detailsButton}>
-            <FaPlay className={styles.playIcon} /> More details
-          </button>
-          <button className={styles.myListButton}>
-            <FaPlus className={styles.plusIcon} /> My list
+          <Link href={`/movie/${movie.id}`} passHref>
+            <button className={styles.detailsButton}>
+              <FaPlay className={styles.playIcon} /> More details
+            </button>
+          </Link>
+
+          <button
+            className={`${styles.myListButton} ${
+              isHydrated && isMovieFavorite ? styles.active : ""
+            }`}
+            onClick={handleFavoriteToggle}
+          >
+            <ButtonIcon className={styles.plusIcon} />
+            {buttonText}
           </button>
         </div>
       </div>
