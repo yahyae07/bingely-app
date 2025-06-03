@@ -29,11 +29,19 @@ async function Movies() {
   const movies = Array.from(uniqueMovies.values());
 
   return (
-    <div className={styles.movies}>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-    </div>
+    <>
+      {movies.length > 0 ? (
+        <div className={styles.movies}>
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      ) : (
+        <p className={styles.centeredMessage}>
+          No movies available. Please try again later.
+        </p>
+      )}
+    </>
   );
 }
 

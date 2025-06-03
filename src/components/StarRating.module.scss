@@ -4,16 +4,16 @@
 }
 
 .filledStar {
-    color: gold;
+    color: var(--gold);
     font-size: 1.2rem;
 }
 
 .emptyStar {
-    color: #ccc;
+    color: var(--bright-gray);
     font-size: 1.2rem;
 }
 
 .numericRating {
     margin-left: 5px;
-    color: #666;
+    color: var(--dark-gray);
 }

@@ -1,18 +1,27 @@
 "use client";
 
-import React from "react";
-import styles from "../page.module.css";
+import React, { useEffect, useState } from "react";
+import styles from "./page.module.scss";
 import MovieCard from "@/components/MovieCard";
 import useMoviesStore from "../stores/useMoviesStore";
 import Navbar from "@/components/Navbar";
 
 export default function Favorites() {
   const { favoriteMovies } = useMoviesStore();
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   return (
     <div className={styles.page}>
       <Navbar />
-      {favoriteMovies.length > 0 ? (
+      {!isHydrated ? (
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : favoriteMovies.length > 0 ? (
         <div className={styles.movies}>
           {favoriteMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />

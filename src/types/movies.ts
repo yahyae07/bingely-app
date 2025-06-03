@@ -1,3 +1,5 @@
+import { Credits } from "./credits";
+
 export interface Movie {
   id: number;
   title: string;
@@ -6,4 +8,8 @@ export interface Movie {
   release_date: string;
   vote_average: number;
   rating: number;
+  backdrop_path: string;
+  runtime: number;
+  genres: { id: number; name: string }[];
+  credits: Credits;
   }

@@ -1,27 +1,60 @@
 import React from "react";
 import { Movie as MovieType } from "@/types/movies";
-import { IMAGE_BASE_URL } from "@/constants/constants";
-import styles from "./Movie.module.scss";
+import { API_KEY, IMAGE_BASE_URL } from "@/constants/constants";
+import styles from "./MovieDetails.module.scss";
+import Image from "next/image";
+import StarRating from "./StarRating";
+import { Credits } from "@/types/credits";
+import FavoriteButton from "./FavoriteButton";
 
 interface MovieProps {
   movie: MovieType;
 }
 
+const formatRuntime = (runtime: number): string => {
+  const hours = Math.floor(runtime / 60);
+  const minutes = runtime % 60;
+  return `${hours}h ${minutes}m`;
+};
+
 const MovieDetails: React.FC<MovieProps> = ({ movie }) => {
   return (
-    <div className={styles.movie}>
-      <h3>{movie.title}</h3>
-      <p>Released: {movie.release_date}</p>
-      <p>Rating: {movie.vote_average}</p>
-      <p>{movie.overview}</p>
-      {movie.poster_path && (
-        <img
-          src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-          alt={movie.title}
-          style={{ width: "200px", height: "300px" }}
-        />
+    <div className={styles.movieSection}>
+      {movie.backdrop_path && (
+        <>
+          <div className={styles.backdropContainer}>
+            <Image
+              src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+              fill={true}
+              priority={true}
+              alt={movie.title}
+            />
+          </div>
+          <div className={styles.movieDetails}>
+            <h1>{movie.title}</h1>
+            <div className={styles.runtimeAndGenres}>
+              <div>{formatRuntime(movie.runtime)}</div>
+              <div className={styles.separator}>•</div>
+              <div>{movie.genres.map((genre) => genre.name).join(" • ")}</div>
+            </div>
+            <p className={styles.releaseDate}>Released: {movie.release_date}</p>
+            <p className={styles.rating}>
+              <StarRating rating={movie.vote_average} showNumeric={true} />
+            </p>
+            <p className={styles.overview}>{movie.overview}</p>
+            <p className={styles.cast}>
+              Stars:{" "}
+              {movie.credits.cast
+                .slice(0, 4)
+                .map((member) => member.name)
+                .join(", ")}
+            </p>
+            <div className={styles.favoriteButtonWrapper}>
+              <FavoriteButton movie={movie} />
+            </div>
+          </div>
+        </>
       )}
-      <br />
     </div>
   );
 };

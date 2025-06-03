@@ -6,7 +6,9 @@
     --white: #ffffff;
     --red: #ff0000;
     --dark-red: #a21313;
-    --lightgray: #666;
+    --dark-gray: #666;
+    --bright-gray: #ccc;
+    --gold: #ffd700;
     --darkred-to-white-gradient: linear-gradient(to bottom right, var(--dark-red), var(--white));
 }
 
