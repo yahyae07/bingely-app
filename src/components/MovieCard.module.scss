@@ -85,9 +85,9 @@
     padding-top: 10px;
     border-top: 1px solid var(--gray);
 }
+// Keep .actionButtons as is
 
-.detailsButton,
-.myListButton {
+.detailsButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,32 +97,16 @@
     cursor: pointer;
     font-size: 1rem;
     padding: 5px;
-
+  
     &:hover {
-        color: var(--dark-red);
+      color: var(--dark-red);
     }
-
-    &.active {
-        color: var(--dark-red);
-    }
-}
-
-.infoIcon,
-.plusIcon {
+  }
+  
+  .infoIcon {
     font-size: 1.4rem;
     margin-right: 5px;
     border: var(--red) 0.1px solid;
     border-radius: 50%;
-
-    .active & {
-        border-color: var(--dark-red);
-    }
-}
-
-.infoIcon {
     padding: 2px;
-}
-
-.plusIcon {
-    padding: 5px;
-}
+  }

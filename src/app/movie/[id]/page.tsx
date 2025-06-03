@@ -3,6 +3,7 @@ import { API_KEY, BASE_URL } from "@/constants/constants";
 import MovieDetails from "@/components/MovieDetails";
 import Navbar from "@/components/Navbar";
 import styles from "./page.module.scss";
+import { notFound } from "next/navigation";
 
 type MovieDetailsPageParams = Promise<{ id: string }>;
 
@@ -16,14 +17,17 @@ const MovieDetailsPage = async (props: { params: MovieDetailsPageParams }) => {
 
   if (!response.ok) {
     console.error(`Failed to fetch movie with ID ${id}`);
+    notFound();
   }
 
-  const movie = await response.json();
+  const movieData = await response.json();
+
+  console.log("Credits:", movieData.credits);
 
   return (
     <div className={styles.page}>
       <Navbar />
-      <MovieDetails movie={movie} />
+      <MovieDetails movie={movieData} />
     </div>
   );
 };

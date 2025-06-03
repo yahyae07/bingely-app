@@ -9,6 +9,7 @@ import { FaCheck, FaPlus } from "react-icons/fa";
 import useMoviesStore from "@/app/stores/useMoviesStore";
 import Link from "next/link";
 import { BsInfo } from "react-icons/bs";
+import FavoriteButton from "./FavoriteButton";
 
 interface MovieProps {
   movie: MovieType;
@@ -48,21 +49,10 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
           <StarRating rating={movie.vote_average} showNumeric={true} />
         </p>
         <div className={styles.actionButtons}>
-          <Link href={`/movie/${movie.id}`} passHref>
-            <button className={styles.detailsButton}>
-              <BsInfo className={styles.infoIcon} /> More Info
-            </button>
+          <Link href={`/movie/${movie.id}`} className={styles.detailsButton}>
+            <BsInfo className={styles.infoIcon} /> More Info
           </Link>
-
-          <button
-            className={`${styles.myListButton} ${
-              isHydrated && isMovieFavorite ? styles.active : ""
-            }`}
-            onClick={handleFavoriteToggle}
-          >
-            <ButtonIcon className={styles.plusIcon} />
-            {buttonText}
-          </button>
+          <FavoriteButton movie={movie} />
         </div>
       </div>
     </div>
