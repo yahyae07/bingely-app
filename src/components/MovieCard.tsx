@@ -5,9 +5,10 @@ import { Movie as MovieType } from "@/types/movies";
 import { IMAGE_BASE_URL } from "@/constants/constants";
 import styles from "./MovieCard.module.scss";
 import StarRating from "./StarRating";
-import { FaCheck, FaPlay, FaPlus } from "react-icons/fa";
+import { FaCheck, FaPlus } from "react-icons/fa";
 import useMoviesStore from "@/app/stores/useMoviesStore";
 import Link from "next/link";
+import { BsInfo } from "react-icons/bs";
 
 interface MovieProps {
   movie: MovieType;
@@ -49,7 +50,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
         <div className={styles.actionButtons}>
           <Link href={`/movie/${movie.id}`} passHref>
             <button className={styles.detailsButton}>
-              <FaPlay className={styles.playIcon} /> More details
+              <BsInfo className={styles.infoIcon} /> More Info
             </button>
           </Link>
 

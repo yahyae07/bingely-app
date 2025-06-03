@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "../page.module.css";
+import styles from "./page.module.scss";
 import MovieCard from "@/components/MovieCard";
 import useMoviesStore from "../stores/useMoviesStore";
 import Navbar from "@/components/Navbar";

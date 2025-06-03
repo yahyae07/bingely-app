@@ -107,15 +107,22 @@
     }
 }
 
-.playIcon,
+.infoIcon,
 .plusIcon {
     font-size: 1.4rem;
     margin-right: 5px;
     border: var(--red) 0.1px solid;
     border-radius: 50%;
-    padding: 5px;
 
     .active & {
-            border-color: var(--dark-red);
-        }
+        border-color: var(--dark-red);
+    }
+}
+
+.infoIcon {
+    padding: 2px;
+}
+
+.plusIcon {
+    padding: 5px;
 }

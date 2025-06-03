@@ -2,11 +2,11 @@ import React from "react";
 import { API_KEY, BASE_URL } from "@/constants/constants";
 import MovieDetails from "@/components/MovieDetails";
 import Navbar from "@/components/Navbar";
-import styles from "../../page.module.css";
+import styles from "./page.module.scss";
 
-type MoviePageParams = Promise<{ id: string }>;
+type MovieDetailsPageParams = Promise<{ id: string }>;
 
-const MoviePage = async (props: { params: MoviePageParams }) => {
+const MovieDetailsPage = async (props: { params: MovieDetailsPageParams }) => {
   const { id } = await props.params;
 
   const response = await fetch(
@@ -28,4 +28,4 @@ const MoviePage = async (props: { params: MoviePageParams }) => {
   );
 };
 
-export default MoviePage;
+export default MovieDetailsPage;
