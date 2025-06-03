@@ -1,7 +1,8 @@
 import React from "react";
 import { Movie as MovieType } from "@/types/movies";
 import { IMAGE_BASE_URL } from "@/constants/constants";
-import styles from "./Movie.module.scss";
+import styles from "./MovieDetails.module.scss";
+import Image from "next/image";
 
 interface MovieProps {
   movie: MovieType;
@@ -9,19 +10,21 @@ interface MovieProps {
 
 const MovieDetails: React.FC<MovieProps> = ({ movie }) => {
   return (
-    <div className={styles.movie}>
-      <h3>{movie.title}</h3>
+    <div className={styles.movieDetails}>
+      {/* <h3>{movie.title}</h3>
       <p>Released: {movie.release_date}</p>
       <p>Rating: {movie.vote_average}</p>
-      <p>{movie.overview}</p>
-      {movie.poster_path && (
-        <img
-          src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-          alt={movie.title}
-          style={{ width: "200px", height: "300px" }}
-        />
+      <p>{movie.overview}</p> */}
+      {movie.backdrop_path && (
+        <div className={styles.backdropContainer}>
+          <Image
+            src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+            fill={true}
+            priority={true}
+            alt={movie.title}
+          />
+        </div>
       )}
-      <br />
     </div>
   );
 };
