@@ -58,4 +58,24 @@
 
 .searchWrapper {
     margin-left: auto;
+    width: 240px;
+}
+
+@media (max-width: 900px) {
+    .searchWrapper {
+        width: 180px;
+    }
+}
+
+@media (max-width: 720px) {
+    .searchWrapper {
+        width: 140px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navLinks {
+        gap: 20px;
+        font-size: 14px;
+    }
 }
