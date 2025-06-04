@@ -2,6 +2,7 @@ import { Credits } from "./credits";
 
 export interface Movie {
   id: number;
+  adult: boolean;
   title: string;
   overview: string;
   poster_path: string;

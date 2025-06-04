@@ -20,7 +20,7 @@ async function Movies() {
     const data = await response.json();
 
     data.results.forEach((movie: MovieType) => {
-      if (!uniqueMovies.has(movie.id)) {
+      if (!uniqueMovies.has(movie.id) && movie.adult === false) {
         uniqueMovies.set(movie.id, movie);
       }
     });

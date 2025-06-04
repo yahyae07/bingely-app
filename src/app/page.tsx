@@ -1,10 +1,10 @@
 import Navbar from "@/components/Navbar";
-import styles from "./page.module.css";
+import sharedStyles from "@/styles/shared.module.scss";
 import Movies from "@/components/Movies";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div className={sharedStyles.page}>
       <Navbar />
       <Movies />
     </div>

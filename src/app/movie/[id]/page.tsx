@@ -2,8 +2,7 @@ import React from "react";
 import { API_KEY, BASE_URL } from "@/constants/constants";
 import MovieDetails from "@/components/MovieDetails";
 import Navbar from "@/components/Navbar";
-import styles from "./page.module.scss";
-import { notFound } from "next/navigation";
+import sharedStyles from "@/styles/shared.module.scss";
 
 type MovieDetailsPageParams = Promise<{ id: string }>;
 
@@ -17,19 +16,19 @@ const MovieDetailsPage = async (props: { params: MovieDetailsPageParams }) => {
     );
 
     if (!response.ok) {
-      notFound();
+      console.error(`Failed to fetch movie details for ID: ${id}`);
     }
 
     const movieData = await response.json();
 
     return (
-      <div className={styles.page}>
+      <div className={sharedStyles.page}>
         <Navbar />
         <MovieDetails movie={movieData} />
       </div>
     );
   } catch (error) {
-    notFound();
+    console.error(`Unexpected error fetching movie ${id}:`, error);
   }
 };
 

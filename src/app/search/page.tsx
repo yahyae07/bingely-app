@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import styles from "./page.module.scss";
 import { API_KEY, BASE_URL } from "@/constants/constants";
 import MovieCard from "@/components/MovieCard";
 import { Movie as MovieType } from "@/types/movies";
+import sharedStyles from "@/styles/shared.module.scss";
+import searchPageStyles from "./search.module.scss";
 
 export default function SearchResults() {
   const searchParams = useSearchParams();
@@ -49,20 +50,20 @@ export default function SearchResults() {
   }, [query]);
 
   return (
-    <div className={styles.page}>
+    <div className={sharedStyles.page}>
       <Navbar />
-      <div className={styles.searchHeader}>
-        <h2>Search Results for: "{query}"</h2>
+      <div className={searchPageStyles.searchHeader}>
+        <h2>Search results for: "{query}"</h2>
       </div>
 
       {loading ? (
-        <div className={styles.loadingContainer}>
-          <div className={styles.spinner}></div>
+        <div className={sharedStyles.loadingContainer}>
+          <div className={sharedStyles.spinner}></div>
         </div>
       ) : error ? (
-        <p className={styles.centeredMessage}>{error}</p>
+        <p className={sharedStyles.centeredMessage}>{error}</p>
       ) : movies.length > 0 ? (
-        <div className={styles.movies}>
+        <div className={sharedStyles.movies}>
           {movies.map((movie) =>
             movie.poster_path !== null && movie.backdrop_path !== null ? (
               <MovieCard key={movie.id} movie={movie} />
@@ -70,7 +71,9 @@ export default function SearchResults() {
           )}
         </div>
       ) : (
-        <p className={styles.centeredMessage}>No results found for "{query}"</p>
+        <p className={sharedStyles.centeredMessage}>
+          No results found for "{query}"
+        </p>
       )}
     </div>
   );
