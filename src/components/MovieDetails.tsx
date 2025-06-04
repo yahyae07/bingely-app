@@ -41,13 +41,15 @@ const MovieDetails: React.FC<MovieProps> = ({ movie }) => {
               <StarRating rating={movie.vote_average} showNumeric={true} />
             </p>
             <p className={styles.overview}>{movie.overview}</p>
-            <p className={styles.cast}>
-              Stars:{" "}
-              {movie.credits.cast
-                .slice(0, 4)
-                .map((member) => member.name)
-                .join(", ")}
-            </p>
+            {movie.credits.cast.length > 0 && (
+              <p className={styles.cast}>
+                Stars:{" "}
+                {movie.credits.cast
+                  .slice(0, 4)
+                  .map((member) => member.name)
+                  .join(", ")}
+              </p>
+            )}
             <div className={styles.favoriteButtonWrapper}>
               <FavoriteButton movie={movie} />
             </div>
