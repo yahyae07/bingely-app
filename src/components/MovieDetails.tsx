@@ -33,8 +33,14 @@ const MovieDetails: React.FC<MovieProps> = ({ movie }) => {
             <h1>{movie.title}</h1>
             <div className={styles.runtimeAndGenres}>
               <div>{formatRuntime(movie.runtime)}</div>
-              <div className={styles.separator}>•</div>
-              <div>{movie.genres.map((genre) => genre.name).join(" • ")}</div>
+              {movie.genres && movie.genres.length > 0 && (
+                <>
+                  <div className={styles.separator}>•</div>
+                  <div>
+                    {movie.genres.map((genre) => genre.name).join(" • ")}
+                  </div>
+                </>
+              )}
             </div>
             <p className={styles.releaseDate}>Released: {movie.release_date}</p>
             <p className={styles.rating}>

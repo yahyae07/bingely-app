@@ -13,26 +13,26 @@
     padding: 25px;
     background-color: var(--black);
     color: var(--white);
-  }
-  
-  @media (max-width: 1200px) {
+}
+
+@media (max-width: 1200px) {
     .movies {
-      grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .movies {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .movies {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-  }
-  
+}
+
 .centeredMessage {
     display: flex;
     justify-content: center;
@@ -40,34 +40,34 @@
     height: 70vh;
     width: 100%;
     font-family: var(--font-geist-sans);
-    font-size: 1.5rem;
     background: var(--darkred-to-white-gradient);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    font-size: 2.25rem;
+    font-size: 36px;
     font-weight: bold;
-    text-align: center; }
+    text-align: center;
+}
 
 
 .loadingContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: var(--dark-red);
-  animation: spin 1s ease-in-out infinite;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--dark-red);
+    animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }   
+    to {
+        transform: rotate(360deg);
+    }
 }

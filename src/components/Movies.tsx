@@ -1,29 +1,37 @@
 import { API_KEY, BASE_URL } from "@/constants/constants";
 import { Movie as MovieType } from "@/types/movies";
-import styles from "./Movies.module.scss";
+import sharedStyles from "@/styles/shared.module.scss";
 import MovieCard from "./MovieCard";
 
 async function Movies() {
   const moviePagesToFetch = 2;
   const uniqueMovies = new Map<number, MovieType>();
 
-  for (let i = 1; i <= moviePagesToFetch; i++) {
-    const response = await fetch(
-      `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${i}`,
-      { next: { revalidate: 3600 } }
-    );
+  try {
+    for (let i = 1; i <= moviePagesToFetch; i++) {
+      try {
+        const response = await fetch(
+          `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${i}`,
+          { next: { revalidate: 3600 } }
+        );
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch movies from page ${i}`);
-    }
+        if (!response.ok) {
+          throw new Error(`Failed to fetch movies from page ${i}`);
+        }
 
-    const data = await response.json();
+        const data = await response.json();
 
-    data.results.forEach((movie: MovieType) => {
-      if (!uniqueMovies.has(movie.id)) {
-        uniqueMovies.set(movie.id, movie);
+        data.results.forEach((movie: MovieType) => {
+          if (!uniqueMovies.has(movie.id) && movie.adult === false) {
+            uniqueMovies.set(movie.id, movie);
+          }
+        });
+      } catch (pageError) {
+        console.error(`Error fetching page ${i}:`, pageError);
       }
-    });
+    }
+  } catch (error) {
+    console.error("Error fetching movies:", error);
   }
 
   const movies = Array.from(uniqueMovies.values());
@@ -31,7 +39,7 @@ async function Movies() {
   return (
     <>
       {movies.length > 0 ? (
-        <div className={styles.movies}>
+        <div className={sharedStyles.movies}>
           {movies.map((movie) =>
             movie.poster_path !== null && movie.backdrop_path !== null ? (
               <MovieCard key={movie.id} movie={movie} />
@@ -39,7 +47,7 @@ async function Movies() {
           )}
         </div>
       ) : (
-        <p className={styles.centeredMessage}>
+        <p className={sharedStyles.centeredMessage}>
           No movies available. Please try again later.
         </p>
       )}
