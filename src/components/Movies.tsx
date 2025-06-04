@@ -40,9 +40,9 @@ async function Movies() {
     <>
       {movies.length > 0 ? (
         <div className={sharedStyles.movies}>
-          {movies.map((movie) =>
+          {movies.map((movie, index) =>
             movie.poster_path !== null && movie.backdrop_path !== null ? (
-              <MovieCard key={movie.id} movie={movie} />
+              <MovieCard key={movie.id} movie={movie} isPriority={index < 10} />
             ) : null
           )}
         </div>

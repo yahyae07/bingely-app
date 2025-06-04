@@ -6,15 +6,17 @@ import { IMAGE_BASE_URL } from "@/constants/constants";
 import styles from "./MovieCard.module.scss";
 import StarRating from "./StarRating";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BsInfo } from "react-icons/bs";
 import FavoriteButton from "./FavoriteButton";
 
 interface MovieProps {
   movie: MovieType;
+  isPriority?: boolean;
 }
 
-const MovieCard: React.FC<MovieProps> = ({ movie }) => {
+const MovieCard: React.FC<MovieProps> = ({ movie, isPriority = false }) => {
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -25,9 +27,12 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
     <div className={styles.movie} onClick={handleCardClick}>
       {movie.poster_path && (
         <div className={styles.imageContainer}>
-          <img
+          <Image
             src={`${IMAGE_BASE_URL}${movie.poster_path}`}
             alt={movie.title}
+            width={0}
+            height={0}
+            priority={isPriority}
             className={styles.posterImage}
           />
         </div>
