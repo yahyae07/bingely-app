@@ -57,12 +57,40 @@
     }
 
     .favoriteButtonWrapper {
+        margin-top: 20px;
+
         button {
-            background: rgba(255, 255, 255, 0.3);
-            padding: 8px 16px;
-            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-image: var(--darkred-to-white-gradient) 1;
+            color: white;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--darkred-to-white-gradient);
+                opacity: 0.1;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+
+                &::before {
+                    opacity: 0.2;
+                }
+            }
         }
-      }
+    }
 }
 
 .runtimeAndGenres {
@@ -76,3 +104,4 @@
         margin: 0 8px;
     }
 }
+
