@@ -22,7 +22,7 @@ const MovieDetailsPage = async (props: { params: MovieDetailsPageParams }) => {
 
   const movieData = await response.json();
 
-  console.log("Credits:", movieData.credits);
+  console.log("Movie:", movieData);
 
   return (
     <div className={styles.page}>

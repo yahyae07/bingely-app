@@ -7,6 +7,7 @@ interface StarRatingProps {
 }
 
 export const getStarCount = (rating: number): number => {
+  if (rating <= 0) return 0;
   if (rating < 2) return 1;
   if (rating < 4) return 2;
   if (rating < 6) return 3;
@@ -18,7 +19,8 @@ const StarRating: React.FC<StarRatingProps> = ({
   rating,
   showNumeric = true,
 }) => {
-  const starCount = getStarCount(rating);
+  const safeRating = typeof rating === "number" && !isNaN(rating) ? rating : 0;
+  const starCount = getStarCount(safeRating);
 
   return (
     <span className={styles.starRating}>
@@ -32,7 +34,7 @@ const StarRating: React.FC<StarRatingProps> = ({
       ))}
 
       {showNumeric && (
-        <span className={styles.numericRating}>({rating.toFixed(1)})</span>
+        <span className={styles.numericRating}>({safeRating.toFixed(1)})</span>
       )}
     </span>
   );
