@@ -32,9 +32,11 @@ async function Movies() {
     <>
       {movies.length > 0 ? (
         <div className={styles.movies}>
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          {movies.map((movie) =>
+            movie.poster_path !== null && movie.backdrop_path !== null ? (
+              <MovieCard key={movie.id} movie={movie} />
+            ) : null
+          )}
         </div>
       ) : (
         <p className={styles.centeredMessage}>
