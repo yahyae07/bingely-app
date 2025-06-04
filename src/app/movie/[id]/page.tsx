@@ -10,26 +10,27 @@ type MovieDetailsPageParams = Promise<{ id: string }>;
 const MovieDetailsPage = async (props: { params: MovieDetailsPageParams }) => {
   const { id } = await props.params;
 
-  const response = await fetch(
-    `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`,
-    { next: { revalidate: 3600 } }
-  );
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`,
+      { next: { revalidate: 3600 } }
+    );
 
-  if (!response.ok) {
-    console.error(`Failed to fetch movie with ID ${id}`);
+    if (!response.ok) {
+      notFound();
+    }
+
+    const movieData = await response.json();
+
+    return (
+      <div className={styles.page}>
+        <Navbar />
+        <MovieDetails movie={movieData} />
+      </div>
+    );
+  } catch (error) {
     notFound();
   }
-
-  const movieData = await response.json();
-
-  console.log("Movie:", movieData);
-
-  return (
-    <div className={styles.page}>
-      <Navbar />
-      <MovieDetails movie={movieData} />
-    </div>
-  );
 };
 
 export default MovieDetailsPage;
