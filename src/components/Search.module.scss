@@ -1,23 +1,28 @@
 .searchContainer {
+    position: relative;
     display: flex;
-    align-items: center;
     height: 40px;
     border-radius: 18px;
-    background-color: var(--gray);
+    background-color: var(--bright-gray);
     overflow: hidden;
 }
 
 .searchInput {
-    height: 100%;
-    padding: 16px;
+    width: 100%;
+    background-color: var(--bright-gray);
+    color: black;
     border: none;
     outline: none;
-    background-color: transparent;
-    color: var(--white);
+    border-radius: 4px;
+    padding: 8px 50px 8px 15px;
     font-size: 14px;
 }
 
 .searchButton {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,4 +36,14 @@
 
 .searchButton:hover {
     background-color: var(--dark-red);
+}
+
+@media (max-width: 480px) {
+    .searchInput {
+        padding-right: 28px;
+    }
+
+    .searchButton {
+        right: 2px;
+    }
 }

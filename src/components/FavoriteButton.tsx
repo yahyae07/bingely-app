@@ -34,7 +34,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movie }) => {
       }`}
       onClick={handleFavoriteToggle}
     >
-      <ButtonIcon className={styles.icon} />
+      <ButtonIcon />
       {buttonText}
     </button>
   );

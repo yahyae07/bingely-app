@@ -1,10 +1,9 @@
 import React from "react";
 import { Movie as MovieType } from "@/types/movies";
-import { API_KEY, IMAGE_BASE_URL } from "@/constants/constants";
+import { IMAGE_BASE_URL } from "@/constants/constants";
 import styles from "./MovieDetails.module.scss";
 import Image from "next/image";
 import StarRating from "./StarRating";
-import { Credits } from "@/types/credits";
 import FavoriteButton from "./FavoriteButton";
 
 interface MovieProps {
@@ -42,13 +41,15 @@ const MovieDetails: React.FC<MovieProps> = ({ movie }) => {
               <StarRating rating={movie.vote_average} showNumeric={true} />
             </p>
             <p className={styles.overview}>{movie.overview}</p>
-            <p className={styles.cast}>
-              Stars:{" "}
-              {movie.credits.cast
-                .slice(0, 4)
-                .map((member) => member.name)
-                .join(", ")}
-            </p>
+            {movie.credits.cast.length > 0 && (
+              <p className={styles.cast}>
+                Stars:{" "}
+                {movie.credits.cast
+                  .slice(0, 4)
+                  .map((member) => member.name)
+                  .join(", ")}
+              </p>
+            )}
             <div className={styles.favoriteButtonWrapper}>
               <FavoriteButton movie={movie} />
             </div>

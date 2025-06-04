@@ -1,4 +1,3 @@
-// Define the credits interface
 export interface Credits {
   id: number;
   cast: CastMember[];

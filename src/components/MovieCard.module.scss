@@ -10,6 +10,7 @@
     transition: transform 0.3s ease;
 
     &:hover {
+        cursor: pointer;
         transform: translateY(-20px);
 
         .imageContainer::after {
@@ -85,28 +86,25 @@
     padding-top: 10px;
     border-top: 1px solid var(--gray);
 }
-// Keep .actionButtons as is
 
 .detailsButton {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
     color: var(--white);
     cursor: pointer;
-    font-size: 1rem;
     padding: 5px;
-  
-    &:hover {
-      color: var(--dark-red);
+
+    &:hover .infoIcon {
+        background-color: var(--dark-red);
+        border-color: var(--dark-red);
     }
   }
   
   .infoIcon {
     font-size: 1.4rem;
     margin-right: 5px;
-    border: var(--red) 0.1px solid;
+    border: var(--red) 2px solid;
     border-radius: 50%;
     padding: 2px;
+    transition: all 0.2s ease;
   }
