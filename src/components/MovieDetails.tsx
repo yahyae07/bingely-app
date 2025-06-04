@@ -1,10 +1,9 @@
 import React from "react";
 import { Movie as MovieType } from "@/types/movies";
-import { API_KEY, IMAGE_BASE_URL } from "@/constants/constants";
+import { IMAGE_BASE_URL } from "@/constants/constants";
 import styles from "./MovieDetails.module.scss";
 import Image from "next/image";
 import StarRating from "./StarRating";
-import { Credits } from "@/types/credits";
 import FavoriteButton from "./FavoriteButton";
 
 interface MovieProps {

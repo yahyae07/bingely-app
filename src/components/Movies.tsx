@@ -1,4 +1,4 @@
-import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "@/constants/constants";
+import { API_KEY, BASE_URL } from "@/constants/constants";
 import { Movie as MovieType } from "@/types/movies";
 import styles from "./Movies.module.scss";
 import MovieCard from "./MovieCard";
